@@ -1,33 +1,34 @@
 #!/bin/bash -x
 
-counter=0
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
-array[((counter++))]=$((RANDOM%900+100))
+array=(789 546 621 267 107 345 950 450 699 956)
 
-max=${array[0]}
-min=${array[0]}
+largest=${array[0]}
+secondGreatest='unset'
+smallest=${array[1]}
+secondSmallest='unset'
 
-for((i=0; i < ${#array[@]}; i++)
+for((i=1; i < ${#array[@]}; i++))
 do
-  
-    if [[ "$array" -gt "$max" ]]; 
-	then
-        max="$array"
-    fi
-
-    if [[ "$array" -lt "$min" ]]; 
-	then
-        min="$array"
-    fi
+  if [[ ${array[i]} > $largest ]]
+  then
+    secondGreatest=$largest
+    largest=${array[i]}
+   elif (( ${array[i]} != $largest )) && { [[ "$secondGreatest" = "unset" ]] || [[ ${array[i]} > $secondGreatest ]]; }
+  then
+    secondGreatest=${array[i]}
+  fi
 done
+echo "secondGreatest = $secondGreatest"
 
-echo "Max is: $max"
-echo "Min is: $min"
+for ((i=1; i < ${#array[@]}; i++))
+do
+	if [[ ${array[i]} < $smallest ]]
+	then
+		secondSmallest=$smallest
+		smallest=${array[i]}
+	  elif (( ${array[i]} != $smallest )) && { [[ "$secondSmallest" = "unset" ]] || [[ ${array[i]} < $secondSmallest ]]; }
+	then
+		secondSmallest=${array[i]}
+	fi
+done
+echo "secondSmallest = $secondSmallest"

@@ -1,7 +1,8 @@
 #!/bin/bash -x
 
-read n
-n=10
+echo "enter the number"
+n=3
+
 for((i=2; i<=$n/2; i++))
 do
   if [ $((n%i)) -eq 0 ]

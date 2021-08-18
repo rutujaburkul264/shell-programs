@@ -16,7 +16,7 @@ do
 
 if [ $head -eq 11 ];
 then
-echo head$head
+echo head $head
 else
-echo tail$tail
+echo tail $tail
 fi

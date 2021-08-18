@@ -1,6 +1,9 @@
 #!/bin/bash -x
-for i in {0...5}; 
+
+read n;
+
+for ((i=1; i<$n; i++)) 
 do 
-echo $((2**i)); 
+echo $((2**$i))
 done
 
